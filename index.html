@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TINGGSFOOD — inspirasi resep rumahan yang praktis dan mudah dibuat.">
+  <title>TINGGSFOOD — Inspirasi Resep Harian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/recipes.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="TINGGSFOOD beranda">
+      <span class="brand-mark">T</span>
+      <span>TINGGSFOOD</span>
+    </a>
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <a class="nav-link active" href="#beranda">Beranda</a>
+      <a class="nav-link" href="#resep">Jelajahi Resep</a>
+      <a class="nav-link" href="#tentang">Tentang</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Ganti tema" title="Ganti tema">
+        <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"/></svg>
+      </button>
+      <button class="button button-primary header-add" id="openAddRecipe" type="button">+ Tambah Resep</button>
+      <button class="icon-button menu-toggle" id="menuToggle" type="button" aria-label="Buka menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-wrap" id="beranda">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> INSPIRASI MASAK HARIAN</span>
+        <h1>Masak enak,<br><span>mulai dari rumah.</span></h1>
+        <p>Ide masakan sederhana dengan bahan yang mudah ditemukan. Temukan menu favoritmu dan mulai memasak hari ini.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#resep">Jelajahi Resep <span aria-hidden="true">→</span></a>
+          <button class="button button-secondary" id="heroAddRecipe" type="button">+ Bagikan Resepmu</button>
+        </div>
+        <div class="hero-note">
+          <span class="note-icon">✓</span>
+          <span>Resep praktis untuk rutinitas sehari-hari</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1100&q=85" alt="Semangkuk makanan rumahan segar dengan sayuran" onerror="this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1100&q=85'">
+        <div class="hero-image-tag"><span class="tag-star">✦</span><span><strong>Temukan favoritmu</strong><small>Ide baru setiap hari</small></span></div>
+        <div class="hero-circle circle-one"></div>
+        <div class="hero-circle circle-two"></div>
+      </div>
+    </section>
+
+    <section class="section-wrap recipe-section" id="resep">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">KOLEKSI PILIHAN</span>
+          <h2>Temukan resep favorit</h2>
+          <p>Masakan rumahan yang sederhana, lezat, dan mudah diikuti.</p>
+        </div>
+        <span class="recipe-count" id="recipeCount">10 resep</span>
+      </div>
+
+      <div class="recipe-tools">
+        <label class="search-box" for="recipeSearch">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 4.2 4.2"></path></svg>
+          <input id="recipeSearch" type="search" placeholder="Cari nama resep atau bahan..." autocomplete="off">
+        </label>
+        <div class="category-list" id="categoryList" aria-label="Filter kategori">
+          <button class="category-chip selected" type="button" data-category="Semua">Semua</button>
+          <button class="category-chip" type="button" data-category="Menu Utama">Menu Utama</button>
+          <button class="category-chip" type="button" data-category="Sup">Sup</button>
+          <button class="category-chip" type="button" data-category="Pasta">Pasta</button>
+          <button class="category-chip" type="button" data-category="Camilan">Camilan</button>
+          <button class="category-chip" type="button" data-category="Sayuran">Sayuran</button>
+        </div>
+      </div>
+
+      <div class="recipe-grid" id="recipeGrid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="emptyState">
+        <span class="empty-icon">⌕</span>
+        <h3>Resep belum ditemukan</h3>
+        <p>Coba kata kunci lain atau pilih kategori yang berbeda.</p>
+        <button class="button button-secondary" id="resetSearch" type="button">Reset pencarian</button>
+      </div>
+    </section>
+
+    <section class="community section-wrap">
+      <div class="community-copy">
+        <span class="eyebrow">DARI DAPURMU</span>
+        <h2>Punya resep andalan?</h2>
+        <p>Tambahkan resep buatanmu sendiri ke koleksi TINGGSFOOD. Lengkapi dengan foto, bahan, dan langkah memasak agar mudah dibagikan.</p>
+        <button class="button button-light" id="communityAddRecipe" type="button">Tambah Resep Sekarang <span aria-hidden="true">→</span></button>
+      </div>
+      <div class="community-art" aria-hidden="true">
+        <div class="art-card art-card-back">RESEP HARI INI</div>
+        <div class="art-card art-card-front"><span>✦</span><strong>Made<br>with care.</strong><small>TINGGSFOOD</small></div>
+        <div class="art-spark spark-one">✳</div><div class="art-spark spark-two">✦</div>
+      </div>
+    </section>
+
+    <section class="about-section section-wrap" id="tentang">
+      <div class="about-mark">T</div>
+      <div>
+        <h2>Tentang TINGGSFOOD</h2>
+        <p>Ruang sederhana untuk menemukan ide masakan rumahan, menyimpan inspirasi, dan berbagi resep dengan cara yang praktis.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#"><span class="brand-mark">T</span><span>TINGGSFOOD</span></a>
+    <p>Masak sederhana, nikmati setiap rasa.</p>
+    <span>© <span id="currentYear"></span> TINGGSFOOD</span>
+  </footer>
+
+  <div class="modal-backdrop hidden" id="recipeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal modal-form">
+      <div class="modal-header">
+        <div><span class="eyebrow">KOLEKSI PRIBADI</span><h2 id="modalTitle">Tambah resep baru</h2></div>
+        <button class="icon-button close-modal" type="button" data-close-modal aria-label="Tutup formulir">×</button>
+      </div>
+      <form id="recipeForm">
+        <div class="form-grid">
+          <label class="form-field full-field">Nama resep
+            <input name="name" required maxlength="70" placeholder="Contoh: Ayam kecap rumahan">
+          </label>
+          <label class="form-field">Kategori
+            <select name="category" required>
+              <option value="Menu Utama">Menu Utama</option><option value="Sup">Sup</option><option value="Pasta">Pasta</option><option value="Camilan">Camilan</option><option value="Sayuran">Sayuran</option><option value="Sarapan">Sarapan</option><option value="Minuman">Minuman</option>
+            </select>
+          </label>
+          <label class="form-field">Waktu memasak (menit)
+            <input name="time" type="number" min="1" max="600" required value="25">
+          </label>
+          <label class="form-field">Jumlah porsi
+            <input name="servings" type="number" min="1" max="50" required value="2">
+          </label>
+          <label class="form-field">Tingkat kesulitan
+            <select name="difficulty"><option>Mudah</option><option>Menengah</option><option>Menantang</option></select>
+          </label>
+          <label class="form-field full-field">Deskripsi singkat
+            <textarea name="description" required maxlength="240" rows="3" placeholder="Ceritakan rasa atau keunikan resep ini..."></textarea>
+          </label>
+          <label class="form-field full-field">Bahan-bahan <span class="field-hint">(pisahkan setiap bahan dengan baris baru)</span>
+            <textarea name="ingredients" required rows="4" placeholder="2 butir telur&#10;1 siung bawang putih&#10;Garam secukupnya"></textarea>
+          </label>
+          <label class="form-field full-field">Langkah memasak <span class="field-hint">(satu langkah per baris)</span>
+            <textarea name="steps" required rows="4" placeholder="Siapkan semua bahan.&#10>Tumis bumbu hingga harum.&#10>Sajikan selagi hangat."></textarea>
+          </label>
+          <div class="form-field full-field">
+            <span class="field-label">Foto makanan</span>
+            <label class="upload-box" for="recipeImage">
+              <span class="upload-symbol">↑</span>
+              <strong id="uploadTitle">Pilih gambar dari perangkat</strong>
+              <small>JPG, PNG, atau WebP · maksimal 3 MB</small>
+              <input id="recipeImage" name="image" type="file" accept="image/jpeg,image/png,image/webp">
+            </label>
+            <img id="imagePreview" class="image-preview hidden" alt="Pratinjau foto resep">
+          </div>
+        </div>
+        <p class="form-notice">Resep disimpan di browser perangkat ini. Data tidak otomatis tersinkron ke perangkat lain.</p>
+        <div class="modal-actions"><button class="button button-secondary" type="button" data-close-modal>Batal</button><button class="button button-primary" type="submit">Simpan Resep</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <article class="modal modal-detail">
+      <button class="icon-button detail-close" type="button" data-close-detail aria-label="Tutup detail">×</button>
+      <img class="detail-image" id="detailImage" alt="">
+      <div class="detail-content">
+        <span class="eyebrow" id="detailCategory"></span>
+        <h2 id="detailTitle"></h2>
+        <p class="detail-description" id="detailDescription"></p>
+        <div class="detail-meta" id="detailMeta"></div>
+        <div class="detail-columns">
+          <section><h3>Bahan-bahan</h3><ul id="detailIngredients"></ul></section>
+          <section><h3>Langkah memasak</h3><ol id="detailSteps"></ol></section>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
